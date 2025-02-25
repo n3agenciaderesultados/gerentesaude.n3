@@ -62,7 +62,6 @@
 
         /* Botão Lançamentos */
         #lancamentos-button {
-            display: none; /* Inicialmente oculto */
             width: 100%;
             padding: 10px;
             background-color: #28a745; /* Verde */
@@ -71,11 +70,17 @@
             border-radius: 5px;
             font-size: 16px;
             cursor: pointer;
-            margin-top: 15px;
         }
 
         #lancamentos-button:hover {
             background-color: #218838; /* Verde escuro */
+        }
+
+        /* Container do Botão Lançamentos */
+        #container-lancamentos {
+            display: none; /* Inicialmente oculto */
+            margin-top: 20px;
+            text-align: center;
         }
     </style>
 </head>
@@ -115,7 +120,7 @@
     </form>
 
     <!-- Container com o Botão Lançamentos -->
-    <div id="container-lancamentos" style="display: none; margin-top: 20px; text-align: center;">
+    <div id="container-lancamentos">
         <button id="lancamentos-button" onclick="window.location.href='https://sites.google.com/view/gerentesaude/lan%C3%A7amento'">Lançamentos</button>
     </div>
 
@@ -131,7 +136,7 @@
 
             // Verifica se ambos os campos estão preenchidos
             if (unidade && gerente) {
-                // Exibe o botão "Lançamentos"
+                // Exibe o container com o botão "Lançamentos"
                 document.getElementById("container-lancamentos").style.display = "block";
             } else {
                 alert("Por favor, preencha todos os campos.");
