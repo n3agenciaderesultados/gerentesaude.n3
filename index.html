@@ -11,48 +11,22 @@
             margin: 0;
             padding: 0;
             display: flex;
+            justify-content: center;
+            align-items: center;
             height: 100vh;
-        }
-
-        /* Lado esquerdo com imagem */
-        .left-side {
-            background-color: #f4f4f4;
-            width: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-        }
-
-        .left-side img {
-            max-width: 80%;
-            height: auto;
-        }
-
-        .left-side h1 {
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-            color: #333;
-            font-size: 24px;
-            font-weight: bold;
-        }
-
-        /* Lado direito com formulário */
-        .right-side {
-            background-color: #ffffff;
-            width: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            background-color: #f9f9f9;
         }
 
         form {
-            width: 80%;
+            width: 100%;
             max-width: 400px;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
-        form h2 {
+        h2 {
             text-align: center;
             margin-bottom: 20px;
             color: #333;
@@ -65,23 +39,20 @@
             color: #555;
         }
 
-        select, input {
+        select, input, button {
             width: 100%;
             padding: 10px;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             border: 1px solid #ccc;
             border-radius: 5px;
             font-size: 16px;
+            box-sizing: border-box; /* Garante que todos os elementos tenham o mesmo tamanho */
         }
 
         button {
-            width: 100%;
-            padding: 10px;
             background-color: #007bff;
             color: white;
             border: none;
-            border-radius: 5px;
-            font-size: 16px;
             cursor: pointer;
         }
 
@@ -100,7 +71,7 @@
             border-radius: 5px;
             font-size: 16px;
             cursor: pointer;
-            margin-top: 20px; /* Espaçamento acima do botão */
+            margin-top: 15px;
         }
 
         #lancamentos-button:hover {
@@ -109,48 +80,42 @@
     </style>
 </head>
 <body>
-    <!-- Lado Esquerdo com Imagem -->
-    <div class="left-side">
-        <img src="https://drive.google.com/uc?id=1gBCwleknkbip2fCwy9QwqxbZWaWIL7ep" alt="N3 AGÊNCIA DE RESULTADOS">
-        <h1>N3 AGÊNCIA DE RESULTADOS</h1>
-    </div>
+    <!-- Formulário Centralizado -->
+    <form id="loginForm">
+        <h2>Identificação</h2>
 
-    <!-- Lado Direito com Formulário -->
-    <div class="right-side">
-        <form id="loginForm">
-            <h2>Identificação</h2>
+        <!-- Campo de Seleção de Unidade -->
+        <label for="unidade">Unidade:</label>
+        <select id="unidade" name="unidade" required>
+            <option value="">Selecione uma unidade</option>
+            <option value="UBS POLO CANABRAVA ILHAS">UBS POLO CANABRAVA ILHAS</option>
+            <option value="UBS CENTRO 1">UBS CENTRO 1</option>
+            <option value="UBS CENTRO 2">UBS CENTRO 2</option>
+            <option value="UBS ALTO DO FUNDÃO">UBS ALTO DO FUNDÃO</option>
+            <option value="UBS ALTO DO CRUZEIRO">UBS ALTO DO CRUZEIRO</option>
+            <option value="UBS SÃO JOÃO">UBS SÃO JOÃO</option>
+            <option value="UBS SÃO FRANCISCO 1">UBS SÃO FRANCISCO 1</option>
+            <option value="UBS SÃO FRANCISCO 2">UBS SÃO FRANCISCO 2</option>
+            <option value="UBS CALUMBI">UBS CALUMBI</option>
+            <option value="UBS BOA VISTA DO LAGAMAR">UBS BOA VISTA DO LAGAMAR</option>
+            <option value="UBS IBOTIRAMINHA">UBS IBOTIRAMINHA</option>
+            <option value="LINHA">LINHA</option>
+            <option value="CANABRAVA DO BOQUEIRÃO">CANABRAVA DO BOQUEIRÃO</option>
+            <option value="ILHA">ILHA</option>
+            <option value="BARRO ALTO">BARRO ALTO</option>
+            <option value="COORDENADORA DE ATENÇÃO BÁSICA">COORDENADORA DE ATENÇÃO BÁSICA</option>
+        </select>
 
-            <!-- Campo de Seleção de Unidade -->
-            <label for="unidade">Unidade:</label>
-            <select id="unidade" name="unidade" required>
-                <option value="">Selecione uma unidade</option>
-                <option value="UBS POLO CANABRAVA ILHAS">UBS POLO CANABRAVA ILHAS</option>
-                <option value="UBS CENTRO 1">UBS CENTRO 1</option>
-                <option value="UBS CENTRO 2">UBS CENTRO 2</option>
-                <option value="UBS ALTO DO FUNDÃO">UBS ALTO DO FUNDÃO</option>
-                <option value="UBS ALTO DO CRUZEIRO">UBS ALTO DO CRUZEIRO</option>
-                <option value="UBS SÃO JOÃO">UBS SÃO JOÃO</option>
-                <option value="UBS SÃO FRANCISCO 1">UBS SÃO FRANCISCO 1</option>
-                <option value="UBS SÃO FRANCISCO 2">UBS SÃO FRANCISCO 2</option>
-                <option value="UBS CALUMBI">UBS CALUMBI</option>
-                <option value="UBS BOA VISTA DO LAGAMAR">UBS BOA VISTA DO LAGAMAR</option>
-                <option value="UBS IBOTIRAMINHA">UBS IBOTIRAMINHA</option>
-                <option value="LINHA">LINHA</option>
-                <option value="CANABRAVA DO BOQUEIRÃO">CANABRAVA DO BOQUEIRÃO</option>
-                <option value="ILHA">ILHA</option>
-                <option value="BARRO ALTO">BARRO ALTO</option>
-                <option value="COORDENADORA DE ATENÇÃO BÁSICA">COORDENADORA DE ATENÇÃO BÁSICA</option>
-            </select>
+        <!-- Campo de Nome do Gerente -->
+        <label for="gerente">Nome:</label>
+        <input type="text" id="gerente" name="gerente" placeholder="Digite seu nome" required oninput="this.value = this.value.toUpperCase();">
 
-            <!-- Campo de Nome do Gerente -->
-            <label for="gerente">Nome:</label>
-            <input type="text" id="gerente" name="gerente" placeholder="Digite seu nome" required oninput="this.value = this.value.toUpperCase();">
+        <!-- Botão de Validação -->
+        <button type="submit">Validar</button>
+    </form>
 
-            <!-- Botão de Validação -->
-            <button type="submit">Validar</button>
-        </form>
-
-        <!-- Botão Lançamentos (inicialmente oculto) -->
+    <!-- Container com o Botão Lançamentos -->
+    <div id="container-lancamentos" style="display: none; margin-top: 20px; text-align: center;">
         <button id="lancamentos-button" onclick="window.location.href='https://sites.google.com/view/gerentesaude/lan%C3%A7amento'">Lançamentos</button>
     </div>
 
@@ -167,7 +132,7 @@
             // Verifica se ambos os campos estão preenchidos
             if (unidade && gerente) {
                 // Exibe o botão "Lançamentos"
-                document.getElementById("lancamentos-button").style.display = "block";
+                document.getElementById("container-lancamentos").style.display = "block";
             } else {
                 alert("Por favor, preencha todos os campos.");
             }
