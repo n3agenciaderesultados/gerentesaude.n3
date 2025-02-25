@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Login</title>
+    <style>
+        /* Estilização básica */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            height: 100vh;
+        }
+
+        /* Lado esquerdo com imagem */
+        .left-side {
+            background-color: #f4f4f4;
+            width: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .left-side img {
+            max-width: 80%;
+            height: auto;
+        }
+
+        .left-side h1 {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: #333;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        /* Lado direito com formulário */
+        .right-side {
+            background-color: #ffffff;
+            width: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        form {
+            width: 80%;
+            max-width: 400px;
+        }
+
+        form h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        select, input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <!-- Lado Esquerdo com Imagem -->
+    <div class="left-side">
+        <img src="https://drive.google.com/uc?id=1s_R4SarnZxKCRCr_IAmXffieOKuDR_mx" alt="N3 AGÊNCIA DE RESULTADOS">
+        <h1>N3 AGÊNCIA DE RESULTADOS</h1>
+    </div>
+
+    <!-- Lado Direito com Formulário -->
+    <div class="right-side">
+        <form id="loginForm">
+            <h2>Login</h2>
+
+            <!-- Campo de Seleção de Unidade -->
+            <label for="unidade">Unidade:</label>
+            <select id="unidade" name="unidade" required>
+                <option value="">Selecione uma unidade</option>
+                <option value="UBS POLO CANABRAVA ILHAS">UBS POLO CANABRAVA ILHAS</option>
+                <option value="UBS CENTRO 1">UBS CENTRO 1</option>
+                <option value="UBS CENTRO 2">UBS CENTRO 2</option>
+                <option value="UBS ALTO DO FUNDÃO">UBS ALTO DO FUNDÃO</option>
+                <option value="UBS ALTO DO CRUZEIRO">UBS ALTO DO CRUZEIRO</option>
+                <option value="UBS SÃO JOÃO">UBS SÃO JOÃO</option>
+                <option value="UBS SÃO FRANCISCO 1">UBS SÃO FRANCISCO 1</option>
+                <option value="UBS SÃO FRANCISCO 2">UBS SÃO FRANCISCO 2</option>
+                <option value="UBS CALUMBI">UBS CALUMBI</option>
+                <option value="UBS BOA VISTA DO LAGAMAR">UBS BOA VISTA DO LAGAMAR</option>
+                <option value="UBS IBOTIRAMINHA">UBS IBOTIRAMINHA</option>
+                <option value="LINHA">LINHA</option>
+                <option value="CANABRAVA DO BOQUEIRÃO">CANABRAVA DO BOQUEIRÃO</option>
+                <option value="ILHA">ILHA</option>
+                <option value="BARRO ALTO">BARRO ALTO</option>
+                <option value="COORDENADORA DE ATENÇÃO BÁSICA">COORDENADORA DE ATENÇÃO BÁSICA</option>
+            </select>
+
+            <!-- Campo de Nome do Gerente -->
+            <label for="gerente">Gerente:</label>
+            <input type="text" id="gerente" name="gerente" placeholder="Digite o nome do gerente" required oninput="this.value = this.value.toUpperCase();">
+
+            <!-- Botão de Envio -->
+            <button type="submit">Entrar</button>
+        </form>
+    </div>
+
+    <!-- Script para Validação e Redirecionamento -->
+    <script>
+        // URL da API do Google Apps Script
+        const API_URL = "https://script.google.com/macros/s/AKfycbxXFguUgQRCIh9pu_wwD6AKwNztWtBdkxpmqu1l_GBUDViubLpo1Ah2RuOM4bB4-Z_TZQ/exec";
+
+        // Manipulador de envio do formulário
+        document.getElementById("loginForm").addEventListener("submit", async function (event) {
+            event.preventDefault(); // Previne o comportamento padrão do formulário
+
+            // Obtém os valores dos campos
+            const unidade = document.getElementById("unidade").value;
+            const gerente = document.getElementById("gerente").value.toUpperCase();
+
+            // Chama a API para verificar os dados
+            try {
+                const response = await fetch(API_URL, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ unidade, gerente })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    // Redireciona para a página desejada
+                    window.location.href = "https://sites.google.com/view/gerentesaude/lan%C3%A7amento";
+                } else {
+                    alert("Unidade ou gerente inválido. Por favor, tente novamente.");
+                }
+            } catch (error) {
+                console.error("Erro ao acessar a API:", error);
+                alert("Ocorreu um erro ao verificar os dados. Tente novamente mais tarde.");
+            }
+        });
+    </script>
+</body>
+</html>
