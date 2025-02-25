@@ -69,18 +69,17 @@
             border: none;
             border-radius: 5px;
             font-size: 16px;
-            cursor: pointer;
+            cursor: not-allowed; /* Cursor de "não permitido" quando desabilitado */
+            opacity: 0.6; /* Diminui a opacidade para indicar que está desativado */
         }
 
-        #lancamentos-button:hover {
-            background-color: #218838; /* Verde escuro */
+        #lancamentos-button:enabled {
+            cursor: pointer; /* Altera o cursor quando habilitado */
+            opacity: 1; /* Restaura a opacidade */
         }
 
-        /* Container do Botão Lançamentos */
-        #container-lancamentos {
-            display: none; /* Inicialmente oculto */
-            margin-top: 20px;
-            text-align: center;
+        #lancamentos-button:enabled:hover {
+            background-color: #218838; /* Verde escuro ao passar o mouse */
         }
     </style>
 </head>
@@ -119,12 +118,10 @@
         <button type="submit">Validar</button>
     </form>
 
-    <!-- Container com o Botão Lançamentos -->
-    <div id="container-lancamentos">
-        <button id="lancamentos-button" onclick="window.location.href='https://sites.google.com/view/gerentesaude/lan%C3%A7amento'">Lançamentos</button>
-    </div>
+    <!-- Botão Lançamentos (Inicialmente Desabilitado) -->
+    <button id="lancamentos-button" disabled onclick="window.location.href='https://sites.google.com/view/gerentesaude/lan%C3%A7amento'">Lançamentos</button>
 
-    <!-- Script para Exibir o Botão Lançamentos -->
+    <!-- Script para Habilitar o Botão Lançamentos -->
     <script>
         // Manipulador de envio do formulário
         document.getElementById("loginForm").addEventListener("submit", function (event) {
@@ -136,8 +133,9 @@
 
             // Verifica se ambos os campos estão preenchidos
             if (unidade && gerente) {
-                // Exibe o container com o botão "Lançamentos"
-                document.getElementById("container-lancamentos").style.display = "block";
+                // Habilita o botão "Lançamentos"
+                const lancamentosButton = document.getElementById("lancamentos-button");
+                lancamentosButton.disabled = false;
             } else {
                 alert("Por favor, preencha todos os campos.");
             }
