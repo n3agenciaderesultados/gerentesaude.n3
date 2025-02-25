@@ -134,41 +134,41 @@
     </div>
 
     <!-- Script para Validação e Redirecionamento -->
-    <script>
-        // URL da API do Google Apps Script
-        const API_URL = "https://script.google.com/macros/s/AKfycbxqx2g2SkTE1WwnZqQalLt2lflVXSxgNfAOVk9Epcwm-ORkvpwbrGRXG5B__5kl0aZg6A/exec";
+ <script>
+    // URL da API do Google Apps Script
+    const API_URL = "https://script.google.com/macros/s/AKfycbxXFguUgQRCIh9pu_wwD6AKwNztWtBdkxpmqu1l_GBUDViubLpo1Ah2RuOM4bB4-Z_TZQ/exec";
 
-        // Manipulador de envio do formulário
-        document.getElementById("loginForm").addEventListener("submit", async function (event) {
-            event.preventDefault(); // Previne o comportamento padrão do formulário
+    // Manipulador de envio do formulário
+    document.getElementById("loginForm").addEventListener("submit", async function (event) {
+        event.preventDefault(); // Previne o comportamento padrão do formulário
 
-            // Obtém os valores dos campos
-            const unidade = document.getElementById("unidade").value;
-            const gerente = document.getElementById("gerente").value.toUpperCase();
+        // Obtém os valores dos campos
+        const unidade = document.getElementById("unidade").value;
+        const gerente = document.getElementById("gerente").value.toUpperCase();
 
-            // Chama a API para verificar os dados
-            try {
-                const response = await fetch(API_URL, {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({ unidade, gerente })
-                });
+        // Chama a API para verificar os dados
+        try {
+            const response = await fetch(API_URL, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ unidade, gerente })
+            });
 
-                const data = await response.json();
+            const data = await response.json();
 
-                if (data.success) {
-                    // Redireciona para a página desejada
-                    window.location.href = "https://sites.google.com/view/gerentesaude/lan%C3%A7amento";
-                } else {
-                    alert("Unidade ou gerente inválido. Por favor, tente novamente.");
-                }
-            } catch (error) {
-                console.error("Erro ao acessar a API:", error);
-                alert("Ocorreu um erro ao verificar os dados. Tente novamente mais tarde.");
+            if (data.success) {
+                // Redireciona para a página desejada
+                window.location.href = "https://sites.google.com/view/gerentesaude/lan%C3%A7amento";
+            } else {
+                alert("Unidade ou gerente inválido. Por favor, tente novamente.");
             }
-        });
-    </script>
+        } catch (error) {
+            console.error("Erro ao acessar a API:", error);
+            alert("Ocorreu um erro ao verificar os dados. Tente novamente mais tarde.");
+        }
+    });
+      </script>
 </body>
 </html>
